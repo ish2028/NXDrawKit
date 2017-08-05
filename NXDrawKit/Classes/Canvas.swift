@@ -46,8 +46,8 @@ open class Canvas: UIView, UITableViewDelegate
         super.init(frame: CGRect.zero)
         self.path.lineCapStyle = .round
         self.canvasId = canvasId
-        self.backgroundImageView.image = image
         if image != nil {
+            self.mainImageView.image = image
             session.appendBackground(Drawing(stroke: nil, background: image))
         }
         self.initialize()
@@ -201,7 +201,6 @@ open class Canvas: UIView, UITableViewDelegate
         self.tempImageView.image?.draw(in: self.bounds)
         
         self.mainImageView.image = UIGraphicsGetImageFromCurrentImageContext()
-        self.session.append(self.currentDrawing())
         self.tempImageView.image = nil
         
         UIGraphicsEndImageContext()
